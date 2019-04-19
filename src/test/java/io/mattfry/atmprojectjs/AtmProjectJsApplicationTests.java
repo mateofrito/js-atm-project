@@ -17,7 +17,9 @@ import org.springframework.test.context.junit4.SpringJUnit4ClassRunner;
 import org.springframework.test.context.junit4.SpringRunner;
 
 import io.mattfry.atmprojectjs.models.Account;
+import io.mattfry.atmprojectjs.models.Transaction;
 import io.mattfry.atmprojectjs.repositories.AccountRepository;
+import io.mattfry.atmprojectjs.repositories.TransactionRepository;
 
 @RunWith(SpringJUnit4ClassRunner.class)
 @DataJpaTest
@@ -28,6 +30,9 @@ public class AtmProjectJsApplicationTests {
 	
 	@Resource
 	private AccountRepository accountRepo;
+	
+	@Resource
+	private TransactionRepository transactionRepo;
 	
 	@Test
 	public void shouldAddNewAccount() {
@@ -45,5 +50,21 @@ public class AtmProjectJsApplicationTests {
         
         assertThat(newAccount.getAccountType(), is("Savings"));
 		
+	}
+	
+	@Test
+	public void shouldAddTransactionof100() {
+//		Account newAccount = accountRepo.save(new Account("Savings", 1000, 250.00));
+	    Transaction newTransaction = transactionRepo.save(new Transaction("Deposit", 01, 100.00));
+	    Long transactionId = newTransaction.getId();
+	    
+	    entityManager.persist(newTransaction);
+        entityManager.flush();
+        entityManager.clear();
+ 
+        Optional<Transaction> transactionToFind = transactionRepo.findById(transactionId);
+        newTransaction = transactionToFind.get();
+        
+        assertThat(newTransaction.getTransactionSource(), is("Deposit"));
 	}
 }

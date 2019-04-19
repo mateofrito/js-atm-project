@@ -52,11 +52,17 @@ public class Account {
 	
 
 	public double getWithdraw() {
+	
 		return withdraw;
 	}
 
-	public double getDeposit() {
-		return deposit;
+	public double getDeposit(double deposit) {
+		this.deposit = deposit;
+		double depositamt = deposit;
+		balance += depositamt;
+		return depositamt;
+		
+		
 	}
 
 	@Override
