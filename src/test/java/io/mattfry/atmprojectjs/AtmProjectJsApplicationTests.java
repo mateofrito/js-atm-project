@@ -159,4 +159,32 @@ public class AtmProjectJsApplicationTests {
 		
 		
 	}
+	@Test
+	public void systemoutTests() {
+		Account account = new Account();
+		
+		//this stuff will probably go in the account or transaction controller
+		double testDeposit = 200.00;
+		
+		Account newChecking = accountRepo.save(new Account("Checking", 2000, 200.00));
+		Account newAccount = accountRepo.save(new Account("Savings", 1000, 250.00));
+	    Transaction newTransaction = transactionRepo.save(new Transaction("Deposit", 01, testDeposit));
+	    int testActChoice = 1000;
+	    Account depositActNumber = accountRepo.findAccountByAccountNumber(testActChoice);
+	    Long accountId = depositActNumber.getId();
+	    System.out.println("Current Balance: " + depositActNumber.getBalance());
+	    System.out.println("Deposit Amt " + testDeposit);
+	    depositActNumber.makeDeposit(testDeposit);
+	    System.out.println("New Balance: " + depositActNumber.getBalance());
+	    
+	   
+	    
+	    
+	    
+	    
+	    
+		
+		
+		
+	}
 }
