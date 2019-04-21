@@ -10,5 +10,7 @@ public interface AccountRepository extends CrudRepository<Account, Long> {
 	
 	Account findAccountByAccountType(String accountType);
 	
+	Account findAccountByAccountNumber(int accountNumber);
+	
 
 }

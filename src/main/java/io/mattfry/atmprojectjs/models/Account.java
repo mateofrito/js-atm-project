@@ -29,6 +29,11 @@ public class Account {
 		
 	}
 
+	public Account(int accountNumber) {
+		this.accountNumber = accountNumber;
+		
+	}
+
 	public Long getId() {
 		return id;
 	}
@@ -38,6 +43,11 @@ public class Account {
 	}
 
 	public int getAccountNumber() {
+		return accountNumber;
+	}
+	
+	public int returnAccountNumber(int accountNumber) {
+		
 		return accountNumber;
 	}
 
@@ -55,12 +65,17 @@ public class Account {
 	
 		return withdraw;
 	}
+	
+	public double getDeposit() {
+		return deposit;
+	}
 
-	public double getDeposit(double deposit) {
+	public double makeDeposit(double deposit) {
 		this.deposit = deposit;
 		double depositamt = deposit;
-		balance += depositamt;
-		return depositamt;
+		double curBalance = balance;
+		balance = curBalance + depositamt;
+		return balance;
 		
 		
 	}
